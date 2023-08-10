@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class UserSignUpResponse {
+public class SignUpResponseDto {
     private Long id;
     private String userEmail;
+    private String userName;
 }

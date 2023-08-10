@@ -3,21 +3,31 @@ package com.wanted.board.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@DynamicInsert // when @ColumnDefault is null
 @Table(name = "user_table")
 public class UserEntity {
 
-    @Id // pk 컬럼 지정. 필수
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
-    private String userEmail;
+    @Column(nullable = false, length = 100)
+    private String Email;
+
+    @Column(nullable = false, length = 100)
     private String password;
+
+    @Column(length = 100)
+    @ColumnDefault("'anonymous user'")
+    private String userName;
 }
