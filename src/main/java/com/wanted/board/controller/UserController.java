@@ -2,6 +2,8 @@ package com.wanted.board.controller;
 
 import com.wanted.board.domain.dto.user.SignUpRequestDto;
 import com.wanted.board.domain.dto.user.SignUpResponseDto;
+import com.wanted.board.domain.dto.user.LoginRequestDto;
+import com.wanted.board.domain.dto.user.LoginResponseDto;
 import com.wanted.board.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,4 +33,11 @@ public class UserController {
                 .body(userService.signUp(signUpRequestDto));
     }
 
+
+    // 로그인
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDto) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(userService.login(loginRequestDto));
+    }
 }

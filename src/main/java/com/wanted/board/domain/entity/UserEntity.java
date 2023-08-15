@@ -23,7 +23,7 @@ public class UserEntity {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String Email;
+    private String email;
 
     @Column(nullable = false, length = 100)
     private String password;

@@ -31,7 +31,7 @@ public class SignUpRequestDto {
 
     public static UserEntity toUserEntity(SignUpRequestDto signUpRequestDto, String pass) {
         return UserEntity.builder()
-                .Email(signUpRequestDto.email)
+                .email(signUpRequestDto.email)
                 .password(pass)
                 .userName(signUpRequestDto.userName == null ? "anonymous user" : signUpRequestDto.userName)
                 .role(UserRole.ROLE_USER)
