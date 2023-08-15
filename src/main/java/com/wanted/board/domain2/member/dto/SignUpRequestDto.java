@@ -1,15 +1,12 @@
-package com.wanted.board.domain.dto.user;
+package com.wanted.board.domain2.member.dto;
 
-import com.wanted.board.domain.dto.userRole.UserRole;
-import com.wanted.board.domain.entity.UserEntity;
+import com.wanted.board.domain2.member.dto.userRole.UserRole;
+import com.wanted.board.domain2.member.domain.UserEntity;
 import jakarta.annotation.Nullable;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 
 @Getter

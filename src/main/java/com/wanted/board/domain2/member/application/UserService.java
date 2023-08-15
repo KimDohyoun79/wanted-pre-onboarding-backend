@@ -1,15 +1,17 @@
-package com.wanted.board.service;
+package com.wanted.board.domain2.member.application;
 
-import com.wanted.board.domain.dto.user.SignUpRequestDto;
-import com.wanted.board.domain.dto.user.SignUpResponseDto;
-import com.wanted.board.domain.dto.user.LoginRequestDto;
-import com.wanted.board.domain.dto.user.LoginResponseDto;
-import com.wanted.board.domain.entity.UserEntity;
-import com.wanted.board.exception.AppException;
-import com.wanted.board.exception.ErrorCode;
-import com.wanted.board.repository.UserRepository;
+import com.wanted.board.domain2.member.dto.LoginResponseDto;
+import com.wanted.board.domain2.member.dto.SignUpRequestDto;
+import com.wanted.board.domain2.member.dto.SignUpResponseDto;
+import com.wanted.board.domain2.member.domain.UserEntity;
+import com.wanted.board.domain2.member.dao.UserRepository;
+import com.wanted.board.global.config.jwt.JwtUtil;
+import com.wanted.board.domain2.member.dto.LoginRequestDto;
+import com.wanted.board.global.exception.AppException;
+import com.wanted.board.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class UserService {
     private final UserRepository userRepository;
 
     private final BCryptPasswordEncoder passwordEncoder;
+
+    @Value("${jwt.secret}")
+    private String secreteKey;
+
+    private Long expireTimesMs = 1000 * 60 * 60L;
 
     // 회원가입
     public SignUpResponseDto signUp(SignUpRequestDto signUpRequestDto) {
@@ -44,8 +51,6 @@ public class UserService {
         }
 
         // make token
-
-        return new LoginResponseDto("token");
-
+        return new LoginResponseDto(JwtUtil.creatToken(userEntity.getUserName(), secreteKey, expireTimesMs));
     }
 }

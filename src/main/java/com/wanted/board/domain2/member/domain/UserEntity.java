@@ -1,10 +1,9 @@
-package com.wanted.board.domain.entity;
+package com.wanted.board.domain2.member.domain;
 
 
-import com.wanted.board.domain.dto.userRole.UserRole;
+import com.wanted.board.domain2.member.dto.userRole.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 @Entity

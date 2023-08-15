@@ -1,10 +1,10 @@
-package com.wanted.board.controller;
+package com.wanted.board.domain2.member.api;
 
-import com.wanted.board.domain.dto.user.SignUpRequestDto;
-import com.wanted.board.domain.dto.user.SignUpResponseDto;
-import com.wanted.board.domain.dto.user.LoginRequestDto;
-import com.wanted.board.domain.dto.user.LoginResponseDto;
-import com.wanted.board.service.UserService;
+import com.wanted.board.domain2.member.dto.SignUpRequestDto;
+import com.wanted.board.domain2.member.dto.SignUpResponseDto;
+import com.wanted.board.domain2.member.dto.LoginRequestDto;
+import com.wanted.board.domain2.member.dto.LoginResponseDto;
+import com.wanted.board.domain2.member.application.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
