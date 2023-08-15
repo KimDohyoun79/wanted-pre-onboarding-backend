@@ -1,6 +1,7 @@
 package com.wanted.board.domain.entity;
 
 
+import com.wanted.board.domain.dto.userRole.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -28,6 +29,8 @@ public class UserEntity {
     private String password;
 
     @Column(length = 100)
-    @ColumnDefault("'anonymous user'")
     private String userName;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 }

@@ -24,14 +24,11 @@ public class UserController {
         return "Connection Clear";
     }
 
+    // 회원가입
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponseDto> signUp(@Valid @RequestBody SignUpRequestDto signUpRequestDto){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(userService.signUp(signUpRequestDto));
     }
 
-//    @PostMapping("/signup")
-//    public SignUpResponseDto signUp(@RequestBody SignUpRequestDto signUpRequestDto){
-//        return userService.signUp(signUpRequestDto);
-//    }
 }
