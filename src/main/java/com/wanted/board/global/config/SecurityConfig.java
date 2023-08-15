@@ -1,4 +1,4 @@
-package com.wanted.board.config;
+package com.wanted.board.global.config;
 
 import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;

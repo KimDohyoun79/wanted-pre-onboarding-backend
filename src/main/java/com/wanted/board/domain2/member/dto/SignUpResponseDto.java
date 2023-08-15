@@ -1,4 +1,4 @@
-package com.wanted.board.domain.dto.user;
+package com.wanted.board.domain2.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +7,6 @@ import lombok.Getter;
 @Getter
 public class SignUpResponseDto {
     private Long id;
-    private String userEmail;
+    private String email;
     private String userName;
 }
