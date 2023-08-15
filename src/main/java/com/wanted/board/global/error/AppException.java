@@ -1,4 +1,4 @@
-package com.wanted.board.global.exception;
+package com.wanted.board.global.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

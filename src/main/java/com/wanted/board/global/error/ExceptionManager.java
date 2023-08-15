@@ -1,4 +1,4 @@
-package com.wanted.board.global.exception;
+package com.wanted.board.global.error;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
