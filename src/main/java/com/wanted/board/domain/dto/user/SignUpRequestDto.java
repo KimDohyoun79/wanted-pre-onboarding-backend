@@ -4,10 +4,8 @@ import com.wanted.board.domain.entity.UserEntity;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 
 @Getter
@@ -27,10 +25,10 @@ public class SignUpRequestDto {
     @Nullable
     private String userName;
 
-    public static UserEntity toUserEntity(SignUpRequestDto signUpRequestDto) {
+    public static UserEntity toUserEntity(SignUpRequestDto signUpRequestDto, String pass) {
         return UserEntity.builder()
                 .Email(signUpRequestDto.email)
-                .password(signUpRequestDto.password)
+                .password(pass)
                 .userName(signUpRequestDto.userName)
                 .build();
     }
