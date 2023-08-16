@@ -52,6 +52,5 @@ public class UserService {
 
         // make token
         return new LoginResponseDto(JwtUtil.creatToken(userEntity.getEmail(), secreteKey, expireTimesMs));
-//        return new LoginResponseDto(JwtUtil.generateJwtToken(userEntity.getUserName(), secreteKey, expireTimesMs);
     }
 }

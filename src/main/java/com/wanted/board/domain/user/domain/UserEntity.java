@@ -1,10 +1,8 @@
 package com.wanted.board.domain.user.domain;
 
-
 import com.wanted.board.domain.user.dto.userRole.UserRole;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
-
 import javax.persistence.*;
 
 @Entity
