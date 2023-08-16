@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .formLogin().disable()
                 .authorizeRequests()
                 .antMatchers("/api/v1/users/**").permitAll()
+                .antMatchers("/api/v1/posts/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/posts/createPost").authenticated()
                 .and()
                 .sessionManagement()
