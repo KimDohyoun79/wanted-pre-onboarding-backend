@@ -6,7 +6,8 @@
  <img src="https://img.shields.io/badge/SpringBoot-6DB33F.svg?logo=Spring-Boot&logoColor=white" />
  <img src="https://img.shields.io/badge/SpringSecurity-6DB33F.svg?logo=Spring-Security&logoColor=white" />
  <img src="https://img.shields.io/badge/MySQL-3776AB.svg?logo=MySql&logoColor=white" />
- <img src="https://img.shields.io/badge/Docker-2496ED.svg?logo=Docker&logoColor=white" />
+
+[//]: # ( <img src="https://img.shields.io/badge/Docker-2496ED.svg?logo=Docker&logoColor=white" />)
  <img src="https://img.shields.io/badge/AmazonEC2-FF9900.svg?logo=Amazon-EC2&logoColor=white" />
  <img src="https://img.shields.io/badge/Gradle-02303A.svg?logo=Gradle&logoColor=white" />
 
@@ -26,17 +27,14 @@
 
 # 애플리케이션 실행 방법
 
-[//]: # (Environment Variable에 아래 값들을 설정하고 실행 합니다.)
-[//]: # ()
-[//]: # (|환경변수명| 예제                                                                             |)
+Environment Variable에 아래 값들을 설정하고 실행 합니다.
 
-[//]: # (|---|--------------------------------------------------------------------------------|)
 
-[//]: # (|SPRING_DATASOURCE_URL| jdbc:mysql://ec2-1-23-456-789.ap-northeast-2.compute.amazonaws.com:3306/wanted |)
-
-[//]: # (|SPRING_DATASOURCE_USERNAME| root                                                                           |)
-
-[//]: # (|SPRING_DATASOURCE_PASSWORD| password                                                                       |)
+|환경변수명| 예제                                                                             |
+|---|--------------------------------------------------------------------------------|
+|SPRING_DATASOURCE_URL| jdbc:mysql://ec2-1-23-456-789.ap-northeast-2.compute.amazonaws.com:3306/wanted |
+|SPRING_DATASOURCE_USERNAME| root                                                                           |
+|SPRING_DATASOURCE_PASSWORD| password                                                                       |
 
 
 --- 
