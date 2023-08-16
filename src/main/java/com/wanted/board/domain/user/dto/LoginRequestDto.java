@@ -1,15 +1,19 @@
-package com.wanted.board.domain2.member.dto;
+package com.wanted.board.domain.user.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class LoginRequestDto {
+
     @Email(message = "이메일 형식으로 입력해주세요.")
     @NotBlank(message = "이메일을 입력해주세요.")
     private String email;

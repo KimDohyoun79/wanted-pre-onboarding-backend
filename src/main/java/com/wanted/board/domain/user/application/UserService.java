@@ -1,12 +1,12 @@
-package com.wanted.board.domain2.member.application;
+package com.wanted.board.domain.user.application;
 
-import com.wanted.board.domain2.member.dto.LoginResponseDto;
-import com.wanted.board.domain2.member.dto.SignUpRequestDto;
-import com.wanted.board.domain2.member.dto.SignUpResponseDto;
-import com.wanted.board.domain2.member.domain.UserEntity;
-import com.wanted.board.domain2.member.dao.UserRepository;
+import com.wanted.board.domain.user.dto.LoginResponseDto;
+import com.wanted.board.domain.user.dto.SignUpRequestDto;
+import com.wanted.board.domain.user.dto.SignUpResponseDto;
+import com.wanted.board.domain.user.domain.UserEntity;
+import com.wanted.board.domain.user.dao.UserRepository;
 import com.wanted.board.global.config.jwt.JwtUtil;
-import com.wanted.board.domain2.member.dto.LoginRequestDto;
+import com.wanted.board.domain.user.dto.LoginRequestDto;
 import com.wanted.board.global.error.AppException;
 import com.wanted.board.global.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -51,6 +51,7 @@ public class UserService {
         }
 
         // make token
-        return new LoginResponseDto(JwtUtil.creatToken(userEntity.getUserName(), secreteKey, expireTimesMs));
+        return new LoginResponseDto(JwtUtil.creatToken(userEntity.getEmail(), secreteKey, expireTimesMs));
+//        return new LoginResponseDto(JwtUtil.generateJwtToken(userEntity.getUserName(), secreteKey, expireTimesMs);
     }
 }

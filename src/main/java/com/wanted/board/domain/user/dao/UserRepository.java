@@ -1,6 +1,6 @@
-package com.wanted.board.domain2.member.dao;
+package com.wanted.board.domain.user.dao;
 
-import com.wanted.board.domain2.member.domain.UserEntity;
+import com.wanted.board.domain.user.domain.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

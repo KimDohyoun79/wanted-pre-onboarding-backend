@@ -1,12 +1,13 @@
-package com.wanted.board.domain2.member.dto;
+package com.wanted.board.domain.user.dto;
 
-import com.wanted.board.domain2.member.dto.userRole.UserRole;
-import com.wanted.board.domain2.member.domain.UserEntity;
-import jakarta.annotation.Nullable;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import com.wanted.board.domain.user.dto.userRole.UserRole;
+import com.wanted.board.domain.user.domain.UserEntity;
 import lombok.*;
+import org.springframework.lang.Nullable;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Getter
