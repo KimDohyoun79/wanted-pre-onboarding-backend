@@ -84,10 +84,35 @@ public class PostService {
             throw new AppException(ErrorCode.INVALID_PERMISSION, ErrorCode.INVALID_PERMISSION.getMessage());
         }
 
-        // 수정 및
+        // DB 저장
         postEntity.updatePost(postUpdateRequest.getTitle(), postUpdateRequest.getBody());
         postRepository.save(postEntity);
 
-        return new PostUpdateResponse("게시물 수정  완료", postEntity.getId());
+        return new PostUpdateResponse("게시물 수정 완료", postEntity.getId());
+    }
+
+    // 게시글 삭제
+    public PostDeleteResponse deletePost(Long postId, String userEmail) {
+
+        // 게시글 존재 확인
+        PostEntity postEntity = postRepository.findById(postId)
+                .orElseThrow(() -> {
+                    throw new AppException(ErrorCode.POST_NOT_FOUND, "해당 게시글이 존재하지 않습니다.");
+                });
+
+        // 게시글 작성자 존재 확인
+        UserEntity userEntity = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new AppException(ErrorCode.USEREMAIL_NOT_FOUND, ErrorCode.USEREMAIL_NOT_FOUND.getMessage()));
+
+
+        // 해당 게시글 접근자 확인(작성자, ADMIN)
+        if (userEntity.getId() != postEntity.getUserEntity().getId() && userEntity.getRole().equals(UserRole.ROLE_USER)) {
+            throw new AppException(ErrorCode.INVALID_PERMISSION, ErrorCode.INVALID_PERMISSION.getMessage());
+        }
+
+        // 게시글 삭제
+        postRepository.deleteById(postId);
+
+        return new PostDeleteResponse("게시물 삭제 완료", postId);
     }
 }
