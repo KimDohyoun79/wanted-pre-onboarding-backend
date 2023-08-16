@@ -21,7 +21,7 @@ public class PostService {
     private final UserRepository userRepository;
 
 
-    public Object addPost(PostAddRequest postAddPutRequest, String email) {
+    public String addPost(PostAddRequest postAddPutRequest, String email) {
 
         // 이메일 확인
         UserEntity userEntity = userRepository.findByEmail(email)
@@ -31,6 +31,6 @@ public class PostService {
         PostEntity postEntity = postRepository.save(postAddPutRequest.toPostEntity(userEntity));
 
         log.info("[PostService]-[addPost] check : email:{}, postId:{}", userEntity.getEmail(), postEntity.getId());
-        return "good";
+        return "Add Post Complete";
     }
 }
