@@ -1,6 +1,7 @@
 package com.wanted.board.global.config;
 
 import com.wanted.board.domain.user.application.UserService;
+import com.wanted.board.domain.user.dao.UserRepository;
 import com.wanted.board.global.config.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final UserService userService;
+    private final UserRepository userRepository;
     @Value("${jwt.secret}")
     private String secretKey;
 
@@ -40,36 +41,8 @@ public class SecurityConfig {
                 .exceptionHandling()
                 .authenticationEntryPoint(null)
                 .and()
-                .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtFilter(userRepository, secretKey), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 }
 
-//
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//
-//    private final UserService userService;
-//    @Value("${jwt.secret}")
-//    private String secretKey;
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable()
-//                .httpBasic().disable()
-//                .formLogin().disable();
-//
-//        http.authorizeRequests()
-//                .antMatchers("/api/v1/users/test").authenticated()
-//                .antMatchers("/api/v1/users/**").permitAll()
-//                .antMatchers("/api/v1/posts/createPost").authenticated()
-//                .and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt 사용하는 경우
-////                .and()
-////                .exceptionHandling()
-//////                .authenticationEntryPoint(null)
-//                .and()
-//                .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class)
-//        ;
-//    }
-//}

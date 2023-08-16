@@ -4,6 +4,8 @@ import com.wanted.board.domain.post.application.PostService;
 import com.wanted.board.domain.post.dto.PostAddRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,10 +22,9 @@ public class PostController {
 
     // 게시물 등록
     @PostMapping("/createPost")
-    public String createPost(@RequestBody PostAddRequest postAddPutRequest, Authentication authentication) {
-//        return ResponseEntity.status(HttpStatus.OK)
-//                .body(postService.addPost(postAddPutRequest, authentication.getName());
-        log.info(authentication.getName());
-        return "sd";
+    public ResponseEntity<Object> createPost(@RequestBody PostAddRequest postAddPutRequest, Authentication authentication) {
+        log.info("[PostController]-[createPost] check : email:{}", authentication.getName());
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(postService.addPost(postAddPutRequest, authentication.getName()));
     }
 }
