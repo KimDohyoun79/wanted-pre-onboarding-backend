@@ -50,4 +50,13 @@ public class PostService {
                 .collect(Collectors.toList());
         return postDetailResponsesList;
     }
+
+    public PostDetailResponse getFindPost(Long postId) {
+        // 게시글 존재 확인
+        PostEntity postEntity = postRepository.findById(postId)
+                .orElseThrow(() -> {
+                    throw new AppException(ErrorCode.POST_NOT_FOUND, ErrorCode.POST_NOT_FOUND.getMessage());
+                });
+        return PostDetailResponse.fromPostEntities(postEntity);
+    }
 }

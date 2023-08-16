@@ -35,10 +35,15 @@ public class PostController {
     @GetMapping()
     public ResponseEntity<List<PostDetailResponse>> getAllPosts(@PageableDefault(page = 0, size = 20,
             sort = "registeredAt", direction = Sort.Direction.DESC) Pageable pageable) {
-
         List<PostDetailResponse> posts = postService.getPostList(pageable);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(posts);
     }
 
+    // 게시물 조회
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostDetailResponse> getDetailePost(@PathVariable Long postId, Authentication authentication) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(postService.getFindPost(postId));
+    }
 }
