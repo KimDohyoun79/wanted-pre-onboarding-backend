@@ -33,8 +33,9 @@ public class SecurityConfig {
                 .formLogin().disable()
                 .authorizeRequests()
                 .antMatchers("/api/v1/users/**").permitAll()
-                .antMatchers("/api/v1/posts/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/posts/createPost").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/v1/posts/{postId}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/v1/posts/{postId}").authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt 사용하는 경우
