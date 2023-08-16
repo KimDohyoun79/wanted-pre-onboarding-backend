@@ -24,4 +24,9 @@ public class PostEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id") // 외래키
     private UserEntity userEntity;
+
+    public void updatePost(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
 }

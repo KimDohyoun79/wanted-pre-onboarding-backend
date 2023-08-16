@@ -1,8 +1,7 @@
 package com.wanted.board.domain.post.api;
 
 import com.wanted.board.domain.post.application.PostService;
-import com.wanted.board.domain.post.dto.PostAddRequest;
-import com.wanted.board.domain.post.dto.PostDetailResponse;
+import com.wanted.board.domain.post.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +24,7 @@ public class PostController {
 
     // 게시물 등록
     @PostMapping("/createPost")
-    public ResponseEntity<Object> createPost(@RequestBody PostAddRequest postAddPutRequest, Authentication authentication) {
+    public ResponseEntity<PostAddResponse> createPost(@RequestBody PostAddRequest postAddPutRequest, Authentication authentication) {
         log.info("[PostController]-[createPost] check : email:{}", authentication.getName());
         return ResponseEntity.status(HttpStatus.OK)
                 .body(postService.addPost(postAddPutRequest, authentication.getName()));
@@ -44,6 +43,15 @@ public class PostController {
     @GetMapping("/{postId}")
     public ResponseEntity<PostDetailResponse> getDetailePost(@PathVariable Long postId, Authentication authentication) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(postService.getFindPost(postId));
+                .body(postService.getDetailePost(postId));
+    }
+
+    // 게시물 수정
+    @PutMapping("/{postId}")
+    public ResponseEntity<PostUpdateResponse> updatePost(@PathVariable Long postId, @RequestBody PostUpdateRequest postUpdateRequest, Authentication authentication) {
+        log.info("dddddddddddddddddddd");
+        PostUpdateResponse postUpdateResponse = postService.updatePost(postId, postUpdateRequest, authentication.getName());
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(postUpdateResponse);
     }
 }
