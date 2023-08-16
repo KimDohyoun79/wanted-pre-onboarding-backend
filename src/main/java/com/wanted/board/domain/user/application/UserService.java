@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +31,7 @@ public class UserService {
     private Long expireTimesMs = 1000 * 60 * 60L;
 
     // 회원가입
+    @Transactional
     public SignUpResponseDto signUp(SignUpRequestDto signUpRequestDto) {
 
         // 회원가입 비밀번호 암화 & DB 저장
@@ -39,6 +41,7 @@ public class UserService {
     }
 
     // 로그인
+    @Transactional
     public LoginResponseDto login(LoginRequestDto loginRequestDto) {
 
         // 이메일 확인
