@@ -1,33 +1,48 @@
 package com.wanted.board.global.config;
 
-import jakarta.servlet.DispatcherType;
+import com.wanted.board.domain.user.application.UserService;
+import com.wanted.board.domain.user.dao.UserRepository;
+import com.wanted.board.global.config.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final UserRepository userRepository;
+    @Value("${jwt.secret}")
+    private String secretKey;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        httpSecurity
-                .csrf().disable()
-                .formLogin().disable();
-
         return httpSecurity
-                .authorizeHttpRequests(
-                        authorize -> authorize
-                                .requestMatchers("/**").permitAll()
-                                .requestMatchers("/login").permitAll()
-                                .anyRequest().authenticated()
-                )
-                //.httpBasic(Customizer.withDefaults()) Jwt 사용할 rest api 방식이면 해줄필요없음
+                .httpBasic().disable()
+                .csrf().disable()
+                .formLogin().disable()
+                .authorizeRequests()
+                .antMatchers("/api/v1/users/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/posts/createPost").authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt 사용하는 경우
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(null)
+                .and()
+                .addFilterBefore(new JwtFilter(userRepository, secretKey), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 }
+

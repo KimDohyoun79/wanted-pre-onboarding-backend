@@ -1,4 +1,4 @@
-package com.wanted.board.domain2.member.dto;
+package com.wanted.board.domain.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
