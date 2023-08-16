@@ -1,6 +1,7 @@
-package com.wanted.board.domain.user.api;
+package com.wanted.board.domain.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wanted.board.domain.user.api.UserController;
 import com.wanted.board.domain.user.application.UserService;
 import com.wanted.board.domain.user.dto.LoginRequestDto;
 import com.wanted.board.domain.user.dto.LoginResponseDto;
@@ -8,6 +9,7 @@ import com.wanted.board.domain.user.dto.SignUpRequestDto;
 import com.wanted.board.domain.user.dto.SignUpResponseDto;
 import com.wanted.board.global.error.AppException;
 import com.wanted.board.global.error.ErrorCode;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -49,7 +51,7 @@ class UserControllerTest {
         @DisplayName("회원가입 성공")
         void signUpSuccess() throws Exception {
 
-            SignUpRequestDto userJoinRequest = new SignUpRequestDto("dokim@naver.com", "1q2w3e4r", "dokim");
+            SignUpRequestDto signUpRequestDto = new SignUpRequestDto("dokim@naver.com", "1q2w3e4r", "dokim");
 
             when(userService.signUp(any()))
                     .thenReturn(new SignUpResponseDto(1L, "dokim@naver.com", "dokim"));
@@ -57,7 +59,7 @@ class UserControllerTest {
             mockMvc.perform(post("/api/v1/users/signup")
                             .with(csrf())
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsBytes(userJoinRequest)))
+                            .content(objectMapper.writeValueAsBytes(signUpRequestDto)))
                     .andExpect(jsonPath("$.id").value(1L))
                     .andExpect(jsonPath("$.email").value("dokim@naver.com"))
                     .andExpect(jsonPath("$.userName").value("dokim"))
@@ -72,7 +74,7 @@ class UserControllerTest {
         @DisplayName("회원가입 실패 : 이메일 형식이 아닌 경우")
         void signUpFail1() throws Exception {
 
-            SignUpRequestDto userJoinRequest = new SignUpRequestDto("dokimnaver.com", "1q2w3e4r", "dokim");
+            SignUpRequestDto signUpRequestDto = new SignUpRequestDto("dokimnaver.com", "1q2w3e4r", "dokim");
 
             when(userService.signUp(any()))
                     .thenThrow(new AppException(ErrorCode.USEREMAIL_NOT_FOUND, ""));
@@ -80,7 +82,7 @@ class UserControllerTest {
             mockMvc.perform(post("/api/v1/users/signup")
                             .with(csrf())
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsBytes(userJoinRequest)))
+                            .content(objectMapper.writeValueAsBytes(signUpRequestDto)))
                     .andExpect(status().isBadRequest())
                     .andDo(print());
         }
@@ -90,7 +92,7 @@ class UserControllerTest {
         @DisplayName("회원가입 실패 : 비밀번호 8글자 이하")
         void signUpFail2() throws Exception {
 
-            SignUpRequestDto userJoinRequest = new SignUpRequestDto("dokim@naver.com", "1q2w3e", "dokim");
+            SignUpRequestDto signUpRequestDto = new SignUpRequestDto("dokim@naver.com", "1q2w3e", "dokim");
 
             when(userService.signUp(any()))
                     .thenThrow(new AppException(ErrorCode.INVALID_PASSWORD, ""));
@@ -98,7 +100,7 @@ class UserControllerTest {
             mockMvc.perform(post("/api/v1/users/signup")
                             .with(csrf())
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsBytes(userJoinRequest)))
+                            .content(objectMapper.writeValueAsBytes(signUpRequestDto)))
                     .andExpect(status().isBadRequest())
                     .andDo(print());
         }
@@ -139,7 +141,7 @@ class UserControllerTest {
             when(userService.signUp(any()))
                     .thenThrow(new AppException(ErrorCode.USEREMAIL_NOT_FOUND, ""));
 
-            mockMvc.perform(post("/api/v1/users/signup")
+            mockMvc.perform(post("/api/v1/users/login")
                             .with(csrf())
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsBytes(loginRequestDto)))
