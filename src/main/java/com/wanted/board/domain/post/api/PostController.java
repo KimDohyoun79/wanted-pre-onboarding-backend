@@ -49,9 +49,17 @@ public class PostController {
     // 게시물 수정
     @PutMapping("/{postId}")
     public ResponseEntity<PostUpdateResponse> updatePost(@PathVariable Long postId, @RequestBody PostUpdateRequest postUpdateRequest, Authentication authentication) {
-        log.info("dddddddddddddddddddd");
         PostUpdateResponse postUpdateResponse = postService.updatePost(postId, postUpdateRequest, authentication.getName());
         return ResponseEntity.status(HttpStatus.OK)
                 .body(postUpdateResponse);
     }
+
+    // 게시물 삭제
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<PostDeleteResponse> deletePost(@PathVariable Long postId, Authentication authentication) {
+        PostDeleteResponse postDeleteResponse = postService.deletePost(postId, authentication.getName());
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(postDeleteResponse);
+    }
+
 }
