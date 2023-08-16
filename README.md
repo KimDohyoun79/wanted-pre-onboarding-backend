@@ -13,7 +13,7 @@
 
 </div>
 
-
+---
 
 # 지원자
 ### 김도현
@@ -21,6 +21,7 @@
 <br>
 
 ---
+
 # 테스트 코드
 ![controllerCep](https://github.com/KimDohyoun79/wanted-pre-onboarding-backend/assets/57426594/b65b9460-996d-443c-893e-5f37222f90ff)
 
@@ -43,13 +44,17 @@ Spring Boot에서 Environment Variable에 아래 값들을 설정하고 실행 �
 
 # 데이터베이스 테이블 구조
 ![erd](https://github.com/KimDohyoun79/wanted-pre-onboarding-backend/assets/57426594/d2537358-be96-45dc-a785-9a9e5316adac)
+
 --- 
 
 # 구현한 API의 동작을 촬영한 데모 영상 링크
 
+### 👉[Swagger API 동작을 촬영한 데모 영상](https://youtu.be/z-ZeVZ3FZ0Y)
+
 --- 
 
 # 구현 방법 및 이유에 대한 간략한 설명
+
 
 --- 
 

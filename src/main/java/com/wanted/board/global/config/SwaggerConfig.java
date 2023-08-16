@@ -32,7 +32,7 @@ public class SwaggerConfig {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Wanted Back-End Internship")
+                .title("Wanted Back-End Internship 김도현")
                 .version("3.0.0")
                 .description("wanted_pre_onBoarding BackEnd 선발과제 API")
                 .build();
