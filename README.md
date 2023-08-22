@@ -1,5 +1,5 @@
 
-# 🏷️wanted_pre_onBoarding BackEnd 선발과제
+# 🏷️wanted_pre_onBoarding BackEnd 인턴쉽 선발과제
 
 <div align="center">
  <img src="https://img.shields.io/badge/SpringBoot-6DB33F.svg?logo=Spring-Boot&logoColor=white" />
